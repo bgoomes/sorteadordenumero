@@ -24,6 +24,10 @@ form.onsubmit = (event) =>{
 
 }
 
+btnNovo.addEventListener("click", () => {
+   resetSorteio()
+})
+
 numero.oninput = (value) => {
     value = numero.value.replace(/\D/g, "")
     numero.value = Number(value)
@@ -49,14 +53,14 @@ function sorteiaNumero(numero, de, ate){
 
     try {
         if (numero > (ate - de + 1)) {
-                console.log("to por aqui")
+                
                 return numerosSortiados;
             }
         
             while (numerosSortiados.length < numero) {
                 var aleatorio = Math.floor(Math.random() * (ate - de + 1) + de);
                 if (!numerosSortiados.includes(aleatorio)) {
-                    numerosSortiados.push(aleatorio);
+                        numerosSortiados.push(aleatorio);    
                 }
             }
         
@@ -75,7 +79,12 @@ function mostraResult(result){
     btnSortear.classList.add("hidden")
     btnNovo.classList.remove("hidden")
 
+    span.textContent = result
+}
 
-    span.textContent = `${result}`
+function resetSorteio(){  
+    console.log("entrei aqui")
 
+    divForm.classList.remove("hidden")
+    divSort.classList.add("hidden")
 }
